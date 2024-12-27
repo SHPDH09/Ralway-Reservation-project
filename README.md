@@ -1,93 +1,74 @@
-Railway Reservation System
-Overview
-The Railway Reservation System is a command-line application designed for efficient management of train bookings. It allows users to add trains, book tickets, view booked tickets, update ticket details, and manage train records. Developed in C++, this project implements file handling, data storage, and basic error handling for a smooth user experience.
+# Railway Reservation System
 
-Features
-Add Train
+## 🚆 Overview
+The **Railway Reservation System** is a command-line application developed in C++ for efficiently managing train reservations. It includes functionalities to add trains, book tickets, view and update ticket details, and manage train records. File handling is used for persistent storage, ensuring data is saved across sessions.
 
-Allows users to add up to 10 unique trains.
-Stores train details in a file for persistent storage.
-Book Tickets
+---
 
-Enables ticket booking for available trains.
-Generates an 8-digit unique PNR (Passenger Name Record) for each ticket.
-Supports multiple bookings in one session.
-View Tickets by Train
+## ✨ Features
+- **Add Train**  
+  Add up to 10 trains with unique train numbers and names. Validations ensure no duplication of train numbers.
 
-Displays all tickets booked for a specific train.
-Reads and displays data directly from the train's file.
-Update Ticket Details
+- **Book Tickets**  
+  - Book tickets for a train by specifying passenger details.  
+  - Automatically generates an 8-digit unique Passenger Name Record (PNR).  
+  - Support for multiple bookings in a single session.  
 
-Allows updating the passenger's name and age using the PNR.
-Logs updates with a timestamp.
-View All Trains
+- **View Tickets by Train**  
+  View the list of all tickets booked for a specific train.
 
-Displays a list of all stored trains with their names and numbers.
-Delete Train
+- **Update Ticket Details**  
+  Modify passenger details (name and age) using the unique PNR.
 
-Removes a train and all associated ticket data permanently.
-Search Ticket by PNR
+- **View All Trains**  
+  Display a list of all available trains with their numbers and names.
 
-Quickly locates and displays ticket details using the PNR.
-Time and Date Tracking
+- **Delete Train**  
+  Permanently delete a train and all associated ticket data.
 
-Logs all ticketing and update operations with the current date and time.
-How It Works
-1. Train Management
-Add Train: Stores the train's name and number in a central file and creates an individual file for ticket data.
-View All Trains: Lists all available trains by reading the Train Number.txt file.
-Delete Train: Deletes the train file and removes its entry from the central list.
-2. Ticket Booking
-Books tickets for a train by writing passenger details to the respective train's file.
-Generates a unique PNR for each booking.
-Tracks available seat counts (up to 50 per train).
-3. Ticket Management
-View Tickets: Displays all tickets for a selected train.
-Update Ticket: Modifies passenger details using the PNR.
-Search by PNR: Fetches ticket details quickly for a given PNR.
-Getting Started
-Prerequisites
-A C++ compiler such as GCC or Clang.
-Basic understanding of C++ file handling.
-Installation
-Clone the repository:
-bash
-Copy code
-git clone https://github.com/yourusername/railway-reservation-system.git
-Compile the program:
-bash
-Copy code
-g++ -o railway railway.cpp
-Run the executable:
-bash
-Copy code
-./railway
-File Structure
-Train Number.txt: Stores the train number and name for all trains.
-<TrainNumber>.txt: Individual files for each train to log ticket details.
-Program Flow
-Main Menu:
+- **Search Ticket by PNR**  
+  Locate and display ticket details using the unique PNR.
 
-Displays all available actions (Add Train, Book Ticket, etc.).
-User chooses an option by entering the corresponding number.
-File Management:
+- **Date and Time Integration**  
+  Logs the date and time for ticket bookings and updates for traceability.
 
-Files are dynamically created and updated for persistent storage of train and ticket information.
-User Interaction:
+---
 
-Input validations ensure that operations like adding trains or booking tickets are error-free.
-Advantages
-Lightweight and portable application.
-File-based storage eliminates the need for database setup.
-Simple yet robust interface for railway reservation tasks.
-Future Enhancements
-Integrate a graphical user interface (GUI) for improved usability.
-Add a reporting feature for train occupancy statistics.
-Support for more advanced search filters (e.g., by date or passenger name).
-Author
-Raunak Kumar
-LNCTU, BCA in AIDA, Section C
+## 🗂 File Structure
+The system uses file handling to store and retrieve data.  
 
-Developer details are shown in the program but hidden in the source code for minimal footprint.
+- **`Train Number.txt`**  
+  Stores the list of train numbers and names.  
 
-Feel free to fork or contribute to this project!
+- **`<TrainNumber>.txt`**  
+  Individual files for each train containing passenger details, PNR, and booking status.  
+
+---
+
+## 🚀 How It Works
+1. **Train Management**  
+   - Add train records with train numbers and names.  
+   - Delete trains, ensuring no stale data.  
+
+2. **Ticket Booking**  
+   - Book tickets for passengers by entering their name, age, and train number.  
+   - Automatically assign a unique PNR to every booking.  
+
+3. **Ticket Management**  
+   - View all tickets for a train.  
+   - Update or search ticket details using the PNR.  
+
+4. **File Integration**  
+   - Persistent data storage ensures records are maintained even after restarting the program.  
+
+---
+
+## 🛠 Requirements
+To run the program, you need:
+- A C++ compiler (e.g., GCC, Clang).  
+- Basic knowledge of running command-line programs.  
+
+### Installation
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/railway-reservation-system.git
