@@ -71,7 +71,7 @@ To run the program, you need:
 ### Installation
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/railway-reservation-system.git
+   git clone https://github.com/SHPDH09/railway-reservation-system.git
 
 
 ### 🖥️ Main Menu  
