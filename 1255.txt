@@ -1,0 +1,8 @@
+Train Name: Bhopal Express
+
+Train Number: 1255
+1Passenger Name: Raunak Kumar, Age: 20, PNR: 10021679
+2Passenger Name: Ruchi Tiwari, Age: 19, PNR: 10021679
+1Passenger Name: Sumit Kumar, Age: 20, PNR: 10013389
+2Passenger Name: Ajit Jaykar, Age: 20, PNR: 10013389
+3Passenger Name: Abhimanue Kumar, Age: 21, PNR: 10013389
