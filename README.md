@@ -124,7 +124,7 @@ The program provides an intuitive menu system:
 ### 👤 Author  
 
 **Raunak Kumar**  
-LNCTU, BCA in AIDA, Section C  
+LNCTU, BCA in AIDA, Section C  3rd -sem
 
 > *Note*: The developer's details are displayed in the program GUI but are hidden within the source code for security and privacy purposes.  
 
