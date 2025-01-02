@@ -6,7 +6,7 @@
 #include<vector>
 #include <chrono>
 #include <thread>
-
+#include <iomanip>
 
 
 using namespace std;
@@ -88,7 +88,7 @@ void addtrain() {
         if (trainFile.is_open()) {
             trainFile << "Train Name: " << name << "\n\n";
             trainFile << "Train Number: " << tnumber << "\n";
-            trainFile<<"   Passenger Name             Age              PNR Number            Date & Time                          Modify Statues\n";
+            trainFile<<"   Passenger Name   Age  PNR Number  Date & Time        Modify Statues\n";
             trainFile.close();
         } else {
             cout << "Error creating file for train " << tnumber << "\n";
@@ -145,7 +145,9 @@ void addtkt() {
 
         cout << "Enter Passenger Name " << i + 1 << ": ";
         cin.ignore();
+
         getline(cin, pname);
+        
         pname_store[record_pdetails] = pname;
 
         cout << "Enter Age of Passenger " << i + 1 << ": ";
@@ -155,8 +157,10 @@ void addtkt() {
         // AdD passEnger detaIls to the train's file
         string datetime1=time_date();
         ofstream trainFile(to_string(tnumber1) + ".txt", ios::app);
+        string stat=" Confirmed";
         if (trainFile.is_open()) {
-            trainFile <<i+1<< "  " << pname << "             " << age << "         , PNR: " << pnrno <<"             "<<datetime1<<"";
+            trainFile <<i+1<< "  " << pname << "  " << age << " , PNR: " << pnrno <<"  "<<datetime1<<"";;
+            
             trainFile.close();
         } else {
             cout << "Error writing to file for train " << tnumber1 << "\n";
@@ -170,7 +174,7 @@ void addtkt() {
 }
 
 void view_tiket() {
-    int train_number;
+ int train_number;
     cout << "Enter the Train Number: ";
     cin >> train_number;
 
@@ -180,12 +184,48 @@ void view_tiket() {
         ifstream trainFile(to_string(train_number) + ".txt");
         if (trainFile.is_open()) {
             string line;
+            bool isHeaderSkipped = false;
+
+            // Print table header
+            cout << "\n========================================================================================\n";
+            cout << std::left << std::setw(10) << "S.No"
+                 << std::setw(25) << "Passenger Name"
+                 << std::setw(10) << "Age"
+                 << std::setw(20) << "PNR Number"
+                 << std::setw(20) << "Date & Time"<<endl;
+            cout << "===========================================================================================\n";
+
+            // Process each line of the file
             while (getline(trainFile, line)) {
-                cout << line << endl;
+                // Skip the file's header content (e.g., train details)
+                if (!isHeaderSkipped) {
+                    if (line.find("Passenger Name") != string::npos) {
+                        isHeaderSkipped = true; // Header found, skip this line
+                        continue;
+                    }
+                    continue;
+                }
+
+                // Split and format the line
+                stringstream ss(line);
+                string sno, pname, age, pnr, datetime, status;
+
+                ss >> sno >> pname >> age >> pnr >> datetime;
+                getline(ss, status); // Extract the rest of the line as status
+
+                // Display ticket data in tabular format
+                cout << std::left << std::setw(10) << sno
+                     << std::setw(9) << pname
+                     << std::setw(15) << age
+                     << std::setw(4) << pnr
+                     << std::setw(6) << datetime
+                     << std::setw(30) << status << endl;
             }
+
+            cout << "===========================================================================================\n";
             trainFile.close();
         } else {
-            cout << "Error opening file for train " << train_number << "\n";
+            cout << "Error opening file for train " << train_number << ".\n";
         }
     }
 }
@@ -331,12 +371,17 @@ int update_tkt_details() {
     cout << "Ticket details updated successfully.\n";
     return 1;
 }
-
+void clear_display(){
+         
+            system("cls"); // Clear screen for Windows
+}
 
 int main() {
     int choice;
     
     while (true) {
+                // Clear the screen at the start of the loop
+    
         cout<<"Date and Time  : "<<time_date();
      
         cout<<"\nWelcome To Ralway Reservation System !\n";
@@ -346,6 +391,7 @@ int main() {
         cout << "\n        1. Add Train\n        2. Book Ticket\n        3. View All Ticket\n        4. Update Ticket\n        5. View All Train        \n        6. Delete Train        \n        7. View TKT\n        8. exit\n";
         cout<<"\nPlease Enter Your Choice >>";
         cin >> choice;
+        clear_display();
         switch (choice) {
             case 1: addtrain(); break;
             
@@ -359,6 +405,6 @@ int main() {
             default: cout << "Invalid choice\n";
 
         }
-
+     
     }
 }
